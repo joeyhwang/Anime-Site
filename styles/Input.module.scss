@@ -1,0 +1,24 @@
+.inputContainer {
+    background: #151F2E;
+    padding: 0.75rem 1rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
+
+    .input {
+        background: #151F2E;
+        border: none;
+        color: white;
+        margin-left: 0.3rem;
+        outline: none;
+        font-size: 1.1rem;
+    }
+    button {
+        background: #151F2E;
+        border: none;
+        cursor: pointer;        
+    }
+}
+

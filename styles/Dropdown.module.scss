@@ -1,0 +1,20 @@
+.dropdown {
+    position: absolute;
+    list-style: none;
+    width: 100%;
+    top: 120%;
+    left: 0;
+    border-radius: 10px;
+    background: #151F2E;
+    padding: 0.75rem 0.5rem;
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+    li {
+        padding: 0.5rem;
+        border-radius: 10px;
+        &:hover {
+            cursor: pointer;
+            background: #0B1622;
+        }
+    }
+}

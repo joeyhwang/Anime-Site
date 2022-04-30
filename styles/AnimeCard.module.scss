@@ -1,0 +1,90 @@
+
+.card {
+    display: flex;
+    width: 175px;
+    cursor: pointer;
+    flex-direction: column;
+    position: relative;
+
+    .preview {
+      position: absolute;
+      right: -130%;
+      top: 10%;
+      width: 15rem;
+      height: 60%;
+      background: #151F2E;
+      color: white;
+      border-radius: 10px;
+      z-index: 1;
+      padding: 1rem 1.2rem 1.2rem 1.2rem;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .topPreviewContainer {
+        h2 {
+          margin: 0;
+        }
+        .ratingContainer {
+          font-size: 0.85rem;
+          margin-bottom: 0.6rem;
+        }
+      }
+
+      .genreContainer {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        gap: 0.4rem;
+        button {
+          font-size: 0.7rem;
+          border-radius: 10px;
+          border: none;
+          padding: 0.2rem 0.5rem;
+        }
+      }
+    }
+
+    
+    .title {
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      max-width: 25ch;
+    }
+  
+    .imageContainer {
+      width: 180px;
+      height: 280px;
+      position: relative;
+      border-radius: 20px;
+      transition: transform .3s;
+      
+      .rank {
+        position: absolute;
+        top: -5%;
+        left: -8%;
+        width: 2rem;
+        height: 2rem;
+        background: #3480EA;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      }
+
+
+      .image {
+        border-radius: 10px;
+      }
+  
+      &:hover {
+        transform: scale(1.03);
+  
+      }
+    }
+  }
+
+  
