@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdArrowDropDown } from 'react-icons/md';
-import styles from '../../styles/Input.module.scss';
-import useComponentVisible from '../hooks/useComponentVisible';
+import styles from 'styles/Input.module.scss';
+import useComponentVisible from 'hooks/useComponentVisible';
 import Dropdown from './Dropdown';
 
 interface InputProps {

@@ -4,13 +4,13 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { AnimeRes } from '../../../src/components/Interfaces';
-import AnimeCard from '../../../src/components/AnimeCard';
-import styles from '../../../styles/Category.module.scss';
-import Navbar from '../../../src/components/Navbar';
-import useOnScreen from '../../../src/hooks/useOnScreen';
-import ScrollButton from '../../../src/components/ScrollButton';
-import FilterInputs from '../../../src/components/FilterInputs';
+import styles from 'styles/Home.module.scss';
+import { AnimeRes } from 'components/Interfaces';
+import AnimeCard from 'components/AnimeCard';
+import Navbar from 'components/Navbar';
+import useOnScreen from 'hooks/useOnScreen';
+import ScrollButton from 'components/ScrollButton';
+import FilterInputs from 'components/FilterInputs';
 
 interface CategoryProps {
   data: { data: AnimeRes[], paging: { next: string, previous?: string } }
@@ -40,6 +40,9 @@ const Category = ({ data }: CategoryProps) => {
         {/* <h1>{category?.toString().toUpperCase()}</h1> */}
         <FilterInputs showFilter filterText={filterText} setFilterText={setFilterText} />
         <ScrollButton />
+        <div className={styles.titleContainer}>
+          <h1>{category?.toString().toUpperCase()}</h1>
+        </div>
         <div className={styles.grid}>
           { animeData && animeData.map(({ node }) => {
             // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -47,9 +50,11 @@ const Category = ({ data }: CategoryProps) => {
               title, id, main_picture, mean, status, genres, rank,
               num_episodes, start_season, media_type, studios,
             } = node;
+            const unwrap = rank && mean && status && genres && num_episodes
+            && start_season && media_type && studios;
             return (
               <Fragment key={id}>
-                {title.toLowerCase().includes(filterText.toLowerCase())
+                {(unwrap && title.toLowerCase().includes(filterText.toLowerCase()))
                   && (
                     <AnimeCard
                       title={title}

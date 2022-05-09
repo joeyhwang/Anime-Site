@@ -1,12 +1,11 @@
 .container {
-  padding: 1vw 10vw;
-
+  padding: 1vw 5vw;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2rem 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   padding: 2rem;
 }
 
@@ -14,16 +13,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  a {
+  button {
     color: #fff;
-    background: none;
+    cursor: pointer;
+    background: #151F2E;
     outline: none;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: gainsboro;
+    }
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 800px) {
+  .container {
+    padding: 1vw 7vw;
+  }
+
   .grid {
-    width: 100%;
-    flex-direction: column;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    padding: 1vw 10vw;
+  }
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
   }
 }

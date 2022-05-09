@@ -1,0 +1,123 @@
+.container {
+  padding: 1vw 5vw;  
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+
+    .bodyHeader {
+        margin-top: 2rem;
+        display: flex;
+        padding: 2rem;
+        background-color: #151F2E;
+        border-radius: 10px;
+
+        .imageContainer {
+          min-width: 190px;
+          height: 280px;
+          position: relative;
+          border-radius: 20px;
+          transition: transform .3s;
+          margin-right: 2rem;
+      }
+
+      
+        .headerTextContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          h1 {
+          margin-top: 0rem;
+          }
+
+          .synopsis {
+            line-height: 1.5;
+            font-size: 1rem;
+          }
+      }
+    }
+
+    .headerTextContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        h1 {
+        margin-top: 0rem;
+        }
+
+        .subHeader {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            span {
+              margin-right: 1rem;
+              font-weight: bold;
+              font-size: 1.3rem;
+            }
+        }
+    }
+
+    .infoContainer {
+        display: flex;
+        margin-top: 1rem;    
+        
+        .info {
+          margin-right: 2rem;
+          background-color: #151F2E;
+          border-radius: 10px;
+          padding: 2rem;
+          
+          .infoColumn {
+            margin-bottom: 1rem;
+            h3 {
+              margin: 0 0 0.1rem 0;
+              font-size: 1rem;
+
+            }
+            div {
+              font-size: 0.8rem;
+            }
+          }
+        }
+    }
+
+}
+
+  
+  // .grid {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   gap: 2rem;
+  //   padding: 2rem;
+  // }
+  
+  // .titleContainer {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   a {
+  //     color: #fff;
+  //     background: none;
+  //     outline: none;
+  //   }
+  // }
+  
+  @media (min-width: 800px) {
+    .container {
+      padding: 1vw 7vw;
+    }
+  
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1400px) {
+    .container {
+      padding: 1vw 10vw;
+    }
+    .grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }

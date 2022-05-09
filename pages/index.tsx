@@ -3,12 +3,12 @@ import React, { Fragment } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.scss';
-import Navbar from '../src/components/Navbar';
-import AnimeCard from '../src/components/AnimeCard';
-import { AnimeRes } from '../src/components/Interfaces';
-import ScrollButton from '../src/components/ScrollButton';
-import FilterInputs from '../src/components/FilterInputs';
+import styles from 'styles/Home.module.scss';
+import Navbar from 'components/Navbar';
+import AnimeCard from 'components/AnimeCard';
+import { AnimeRes } from 'components/Interfaces';
+import ScrollButton from 'components/ScrollButton';
+import FilterInputs from 'components/FilterInputs';
 
 interface HomeProps {
   all: { data: AnimeRes[] },
@@ -36,6 +36,7 @@ const Home: NextPage<HomeProps> = ({
         title, id, main_picture, mean, status, genres, rank,
         num_episodes, start_season, media_type, studios,
       } = node;
+
       return (
         <Fragment key={id}>
           <AnimeCard
@@ -63,8 +64,10 @@ const Home: NextPage<HomeProps> = ({
           <Fragment key={title}>
             <div className={styles.titleContainer}>
               <h1>{title}</h1>
-              <Link href={`/anime/category/${route}`}>
-                <a>View More</a>
+              <Link href={`/anime/category/${route}`} passHref>
+                <button type="button">
+                  View More
+                </button>
               </Link>
             </div>
             <div className={styles.grid}>

@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
+import styles from 'styles/FilterInputs.module.scss';
 import Input from './Input';
-import styles from '../../styles/FilterInputs.module.scss';
 
 interface FilterInputsProps {
   showFilter: boolean,

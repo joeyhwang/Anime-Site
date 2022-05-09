@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../../styles/AnimeCard.module.scss';
-import { Anime } from './Interfaces';
+import styles from 'styles/AnimeCard.module.scss';
+import { AnimeCard as AnimeCardProps } from './Interfaces';
 // id, title, main_picture, mean, status, genres, num_episodes, start_season media_type
 const AnimeCard = ({
   title, id, main_picture, mean, status, genres, rank,
   num_episodes, start_season, media_type, studios,
-}: Anime) => {
+}: AnimeCardProps) => {
   const [show, setShow] = useState(false);
   const fmtString = (s: string) => (s.split('_').map((e) => e.charAt(0).toUpperCase() + e.substring(1).toLocaleLowerCase()).join(' '));
   const renderStudiosText = () => {

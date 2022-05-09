@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { FaArrowCircleUp } from 'react-icons/fa';
 import { BsFillArrowUpCircleFill } from 'react-icons/bs';
-import styles from '../../styles/ScrollButton.module.scss';
+import styles from 'styles/ScrollButton.module.scss';
 
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false);
