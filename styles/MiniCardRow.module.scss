@@ -1,6 +1,24 @@
 
-.recommendationGrid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 1rem;
+
+.recommendationContainer {
+    .titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        button {
+            height: 50%;
+            padding: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+    }
+    
+    
+    .recommendationGrid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 1rem;
+
+    }
 }

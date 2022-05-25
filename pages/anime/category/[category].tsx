@@ -25,13 +25,13 @@ const Category = ({ data }: CategoryProps) => {
   const isVisible = useOnScreen(gridRef);
   const [filterText, setFilterText] = useState('');
   useEffect(() => {
-    if (isVisible) {
+    if (filterText === '' && isVisible) {
       axios.get('/api/hello', { params: { url: next } }).then((res) => res.data.data).then(({ data: d, paging: p }) => {
         setAnimeData((animeD) => [...animeD, ...d]);
         setNext(p.next);
       });
     }
-  }, [isVisible, next]);
+  }, [isVisible, next, filterText]);
 
   return (
     <>
@@ -50,7 +50,7 @@ const Category = ({ data }: CategoryProps) => {
               title, id, main_picture, mean, status, genres, rank,
               num_episodes, start_season, media_type, studios,
             } = node;
-            const unwrap = rank && mean && status && genres && num_episodes
+            const unwrap = rank && mean && status && genres
             && start_season && media_type && studios;
             return (
               <Fragment key={id}>

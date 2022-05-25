@@ -1,43 +1,49 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from 'styles/AnimeId.module.scss';
 import { Anime as AnimeType } from 'components/Interfaces';
-import MiniCardRow from '@/components/MiniCardRow';
-import Navbar from '@/components/Navbar';
+import MiniCardRow from 'components/MiniCardRow';
+import Navbar from 'components/Navbar';
+
+interface infoArray {
+  id: number,
+  name: string,
+}
 
 interface AnimeProps {
   data: AnimeType
 }
 
 const Anime = ({ data }: AnimeProps) => {
-  console.log(data);
   const {
     average_episode_duration, broadcast, end_date, genres, main_picture,
-    mean, media_type, num_episodes, num_list_users, num_scoring_users,
+    mean, media_type, num_episodes, num_scoring_users,
     popularity, rank, recommendations, related_anime, source, start_date,
     statistics, status, studios, synopsis, title,
   } = data || {};
   const fmtString = (s: string) => (s.split('_').map((e) => e.charAt(0).toUpperCase() + e.substring(1).toLocaleLowerCase()).join(' '));
-
   const convertSecondsToMin = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
-    const sec = seconds % 60;
+    // const sec = seconds % 60;
     const fmtNum = (num: number) => num.toString().padStart(2, '0');
     return `${fmtNum(minutes)} min`;
   };
   // const router = useRouter();
   // const { id } = router.query;
-  const infoColumn = (infoTitle: string, value: string | number | undefined) => {
-    const info = value || 'unknown';
-    return (
-      <div className={styles.infoColumn}>
-        <h3>{infoTitle}</h3>
-        <div>{info}</div>
-      </div>
-    );
-  };
+  const infoColumn = (infoTitle: string, value: string | number | infoArray[] | undefined) => (
+    <div className={styles.infoColumn}>
+      <h3>{infoTitle}</h3>
+      { Array.isArray(value)
+        ? value.map(({ id, name }) => (
+          <div key={id}>
+            {name}
+          </div>
+        ))
+        : <div>{value || 'unknown'}</div>}
+    </div>
+  );
 
   return (
     <div>
@@ -63,12 +69,13 @@ const Anime = ({ data }: AnimeProps) => {
                   Rank:
                   {' '}
                   <span>{rank || 'N/A'}</span>
-                  Popularity:
-                  {' '}
-                  <span>{popularity || 'N/A'}</span>
                   Score:
                   {' '}
                   <span>{mean || 'N/A'}</span>
+                  Popularity:
+                  {' '}
+                  <span>{popularity || 'N/A'}</span>
+
                   Members:
                   {' '}
                   <span>{statistics.num_list_users.toLocaleString('en-US') || 'N/A'}</span>
@@ -88,21 +95,25 @@ const Anime = ({ data }: AnimeProps) => {
               { infoColumn('Start Date', start_date)}
               { infoColumn('End Date', end_date)}
               { infoColumn('Broadcast', broadcast && broadcast.start_time)}
+              { infoColumn(studios.length > 1 ? 'Studios' : 'Studio', studios)}
               { infoColumn('Source', fmtString(source))}
               { infoColumn('Status', fmtString(status))}
               { infoColumn('Episode Duration', convertSecondsToMin(average_episode_duration))}
               <div>
-                {genres.map(({ id, name }) => (
-                  <div key={id}>
-                    {name}
-                  </div>
-                ))}
+                <div className={styles.infoColumn}>
+                  <h3>{genres.length > 1 ? 'Genres' : 'Genre'}</h3>
+                  {genres.map(({ id, name }) => (
+                    <div key={id}>
+                      {name}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
             <div className={styles.placeholder}>
               <MiniCardRow
-                recommendations={recommendations}
+                animeData={recommendations}
                 title="Recommendations"
               />
 
@@ -123,7 +134,7 @@ const Anime = ({ data }: AnimeProps) => {
               </div> */}
               <div>
                 <MiniCardRow
-                  relatedAnime={related_anime}
+                  animeData={related_anime}
                   title="Related Anime"
                 />
               </div>

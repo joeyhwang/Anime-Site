@@ -1,60 +1,46 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useState } from 'react';
 import { Anime } from 'components/Interfaces';
 import styles from 'styles/MiniCardRow.module.scss';
 import MiniCard from './MiniCard';
 
-interface Recommendations {
-  node: Anime, num_recommendations: number
-}
-
-interface RelatedAnime {
-  node: Anime, relation_type_formatted: string,
+interface Data {
+  node: Anime, relation_type_formatted?: string, num_recommendations?: number,
 }
 
 interface Props {
-  recommendations?: Recommendations[],
-  relatedAnime?: RelatedAnime[],
+  animeData: Data[],
   title: string,
 }
 
-const MiniCardRow = ({ recommendations = [], relatedAnime = [], title }: Props) => {
-  console.log(recommendations);
+const MiniCardRow = ({ animeData = [], title }: Props) => {
+  const [showMore, setShowMore] = useState(false);
+  const animeDataSlice = showMore ? animeData : animeData.slice(0, 10);
 
   return (
     <div className={styles.recommendationContainer}>
       {
-        recommendations.length > 0
+        animeData.length > 0
         && (
         <>
-          <h3>{title}</h3>
+          <div className={styles.titleContainer}>
+            <h3>{title}</h3>
+            {
+              (animeData.length > 10)
+              && (
+              <button type="button" onClick={() => setShowMore((show) => !show)}>
+                {showMore ? 'Show Less' : 'Show More'}
+              </button>
+              )
+            }
+          </div>
           <div className={styles.recommendationGrid}>
             {
-              recommendations.map(({ node, num_recommendations }) => (
+              animeDataSlice.map(({ node, num_recommendations, relation_type_formatted }) => (
                 <div key={node.id}>
                   <MiniCard
                     data={node}
                     num_recommendations={num_recommendations}
-                  />
-                </div>
-              ))
-            }
-          </div>
-        </>
-        )
-      }
-
-      {
-        relatedAnime.length > 0
-        && (
-        <>
-          <h3>{title}</h3>
-          <div className={styles.recommendationGrid}>
-            {
-              relatedAnime.map(({ node, relation_type_formatted }) => (
-                <div key={node.id}>
-                  <MiniCard
-                    data={node}
                     relation_type_formatted={relation_type_formatted}
                   />
                 </div>

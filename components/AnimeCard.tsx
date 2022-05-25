@@ -39,7 +39,7 @@ const AnimeCard = ({
             </div>
             <div>
               {
-                num_episodes > 1
+                (num_episodes && num_episodes >= 1)
                 && (
                 <div>
                   {`${num_episodes} Episodes`}
