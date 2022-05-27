@@ -25,7 +25,7 @@ const Category = ({ data }: CategoryProps) => {
   const isVisible = useOnScreen(gridRef);
   const [filterText, setFilterText] = useState('');
   useEffect(() => {
-    if (filterText === '' && isVisible) {
+    if (filterText === '' && isVisible && next) {
       axios.get('/api/hello', { params: { url: next } }).then((res) => res.data.data).then(({ data: d, paging: p }) => {
         setAnimeData((animeD) => [...animeD, ...d]);
         setNext(p.next);
@@ -44,7 +44,7 @@ const Category = ({ data }: CategoryProps) => {
           <h1>{category?.toString().toUpperCase()}</h1>
         </div>
         <div className={styles.grid}>
-          { animeData && animeData.map(({ node }) => {
+          { animeData && animeData.map(({ node }, i) => {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             const {
               title, id, main_picture, mean, status, genres, rank,
@@ -68,6 +68,7 @@ const Category = ({ data }: CategoryProps) => {
                       start_season={start_season}
                       media_type={media_type}
                       studios={studios}
+                      i={i}
                     />
                   )}
 

@@ -30,7 +30,7 @@ const Home: NextPage<HomeProps> = ({
     { anime: popularity.data, title: 'Most Popular', route: 'bypopularity' },
     { anime: upcoming.data, title: 'Upcoming', route: 'upcoming' }];
   const renderAnime = (anime: AnimeRes[]) => (
-    anime.map(({ node }) => {
+    anime.map(({ node }, i) => {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       const {
         title, id, main_picture, mean, status, genres, rank,
@@ -51,6 +51,7 @@ const Home: NextPage<HomeProps> = ({
             start_season={start_season}
             media_type={media_type}
             studios={studios}
+            i={i}
           />
         </Fragment>
       );

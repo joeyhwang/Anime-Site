@@ -36,12 +36,13 @@ const MiniCardRow = ({ animeData = [], title }: Props) => {
           </div>
           <div className={styles.recommendationGrid}>
             {
-              animeDataSlice.map(({ node, num_recommendations, relation_type_formatted }) => (
+              animeDataSlice.map(({ node, num_recommendations, relation_type_formatted }, i) => (
                 <div key={node.id}>
                   <MiniCard
                     data={node}
                     num_recommendations={num_recommendations}
                     relation_type_formatted={relation_type_formatted}
+                    i={i}
                   />
                 </div>
               ))

@@ -13,7 +13,7 @@ export interface AnimeCard {
   id: string, title: string, main_picture: { large: string, medium: string }
   mean: number, status: string, genres: Genres[], rank: number,
   num_episodes: number, start_season: { year: number, season: string }, media_type: string,
-  studios: { id: number, name: string }[],
+  studios: { id: number, name: string }[], i: number,
 }
 
 export interface AnimeRes {

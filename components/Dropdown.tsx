@@ -16,8 +16,8 @@ const Dropdown = ({ items, setSelectedValue, setVisible }: DropdownProps) => {
   return (
     <ul className={styles.dropdown}>
       {items?.map((item) => (
-        <li key={item}>
-          <div aria-hidden onClick={() => handleClick(item)} onKeyDown={() => handleClick(item)}>
+        <li key={item} onClick={() => handleClick(item)} onKeyDown={() => handleClick(item)}>
+          <div aria-hidden >
             {item}
           </div>
         </li>

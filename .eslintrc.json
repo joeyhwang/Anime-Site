@@ -1,5 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript"],
+  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript",
+    "plugin:jest/recommended", "plugin:jest/style", "plugin:testing-library"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -16,6 +18,10 @@
       "components": [ "Link" ],
       "specialLink": [ "hrefLeft", "hrefRight" ],
       "aspects": [ "invalidHref", "preferButton" ]
-    }]
+    }],
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off"
   }
 }

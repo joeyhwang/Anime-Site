@@ -1,30 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import useOnScreen from 'hooks/useOnScreen';
 import styles from 'styles/AnimeCard.module.scss';
 import { AnimeCard as AnimeCardProps } from './Interfaces';
 // id, title, main_picture, mean, status, genres, num_episodes, start_season media_type
 const AnimeCard = ({
   title, id, main_picture, mean, status, genres, rank,
-  num_episodes, start_season, media_type, studios,
+  num_episodes, start_season, media_type, studios, i,
 }: AnimeCardProps) => {
-  const [show, setShow] = useState(false);
+  const [showHoverCard, setShowHoverCard] = useState(false);
   const fmtString = (s: string) => (s.split('_').map((e) => e.charAt(0).toUpperCase() + e.substring(1).toLocaleLowerCase()).join(' '));
+  const cardRef = useRef() as React.MutableRefObject<any>;
+  const isVisible = useOnScreen(cardRef);
+  const [faded, setFaded] = useState(false);
   const renderStudiosText = () => {
     const studioArray = studios.map(({ name }) => name);
     return <div>{studioArray.join(', ')}</div>;
   };
 
+  useEffect(() => {
+    if (isVisible) {
+      setFaded(true);
+    } 
+  },[isVisible]) 
   return (
     <Link href={`/anime/${id}`} passHref>
 
       <div
         className={styles.card}
         key={id}
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onMouseEnter={() => setShowHoverCard(true)}
+        onMouseLeave={() => setShowHoverCard(false)}
+        ref={cardRef}
+        style={{ opacity: faded ? 1 : 0, transition: `all ${(i % 6)/3}s ease-in-out` }}
       >
-        <div className={styles.preview} style={{ display: show ? 'flex' : 'none' }}>
+        <div className={styles.preview} style={{ display: showHoverCard ? 'flex' : 'none' }}>
           <div className={styles.topPreviewContainer}>
             {
               start_season
@@ -37,25 +48,24 @@ const AnimeCard = ({
               </strong>
               {` ${media_type.toUpperCase()} ${fmtString(status)}`}
             </div>
-            <div>
+            <div className={styles.bodyContainer}>
               {
                 (num_episodes && num_episodes >= 1)
-                && (
+                ? (
                 <div>
-                  {`${num_episodes} Episodes`}
+                  {`${num_episodes} ${num_episodes === 1 ? 'Episode' : 'Episodes'}`}
                 </div>
-                )
+                ) : null
               }
-
               {
                 studios
-                && (
+                ? (
                   <div className={styles.studioContainer}>
                     {
                       renderStudiosText()
                     }
                   </div>
-                )
+                ) : null
               }
             </div>
 

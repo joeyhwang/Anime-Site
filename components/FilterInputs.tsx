@@ -10,7 +10,7 @@ interface FilterInputsProps {
 }
 
 const FilterInputs = ({ showFilter, filterText, setFilterText }: FilterInputsProps) => {
-  const yearDropdownItems = ['2022', '2021', '2020', '2019'];
+  const yearDropdownItems = Array(20).fill(1).map((j, i) => (2022 - i).toString());
   const seasonDropdownItems = ['Winter', 'Spring', 'Summer', 'Fall'];
   return (
     <div className={styles.row}>
@@ -22,10 +22,10 @@ const FilterInputs = ({ showFilter, filterText, setFilterText }: FilterInputsPro
           </div>
           )}
 
-      <div className={styles.queryContainer}>
+      {/* <div className={styles.queryContainer}>
         <h2>Genres</h2>
         <Input dropDownItems={seasonDropdownItems} search={false} />
-      </div>
+      </div> */}
       <div className={styles.queryContainer}>
         <h2>Season</h2>
         <Input dropDownItems={seasonDropdownItems} search={false} />
