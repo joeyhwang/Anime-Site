@@ -5,6 +5,7 @@ import { MdArrowDropDown } from 'react-icons/md';
 import styles from 'styles/Input.module.scss';
 import useComponentVisible from 'hooks/useComponentVisible';
 import Dropdown from './Dropdown';
+import { useRouter } from 'next/router'
 
 interface InputProps {
   search: Boolean,
@@ -16,13 +17,13 @@ interface InputProps {
 const Input = ({
   search, dropDownItems = [], searchText, setSearchText,
 }: InputProps) => {
+  const router = useRouter();
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   const items: string[] = dropDownItems;
   const renderDropdown = () => {
     setIsComponentVisible((v) => !v);
   };
   const [selectedValue, setSelectedValue] = useState('');
-
   // const onInputChange = () => {
   //   setSelectedValue();
   // };
@@ -32,6 +33,15 @@ const Input = ({
       setSearchText(e.target.value);
     }
   };
+
+  const pushSearch = (e: any) => {
+    console.log(router)
+    if (e.key === 'Enter' && e.target.value !== '') {
+      router.push(`/anime/search/${e.target.value}`).then(() => router.pathname.includes('/anime/search/') && router.reload())
+      
+    }
+
+  }
 
   return (
     <div ref={ref} className={styles.inputContainer}>
@@ -43,6 +53,7 @@ const Input = ({
               className={styles.input}
               value={searchText}
               onChange={(e) => onSearchChange(e)}
+              onKeyDown={(e) => pushSearch(e)}
             />
           </>
         )

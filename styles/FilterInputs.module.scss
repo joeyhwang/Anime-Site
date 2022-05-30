@@ -1,5 +1,26 @@
 
 .row {
     display: flex;
-    
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    .leftContainer {
+      display: flex;
+    }
+
+    .rightContainer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      > button {
+        font-size: 1.2rem;
+        border: none;
+        background-color: transparent;
+        transition: all 0.3s ease-in-out;
+        :hover, &.active {
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
   }

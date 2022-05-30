@@ -5,10 +5,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from 'styles/Home.module.scss';
 import Navbar from 'components/Navbar';
-import AnimeCard from 'components/AnimeCard';
+import AnimeCard from 'components/AnimeCards/AnimeCard';
 import { AnimeRes } from 'components/Interfaces';
 import ScrollButton from 'components/ScrollButton';
 import FilterInputs from 'components/FilterInputs';
+import { FiArrowRight } from 'react-icons/fi';
 
 interface HomeProps {
   all: { data: AnimeRes[] },
@@ -66,8 +67,8 @@ const Home: NextPage<HomeProps> = ({
             <div className={styles.titleContainer}>
               <h1>{title}</h1>
               <Link href={`/anime/category/${route}`} passHref>
-                <button type="button">
-                  View More
+                <button type="button" className={styles.viewMoreBtn}>
+                  <FiArrowRight />
                 </button>
               </Link>
             </div>
@@ -85,7 +86,7 @@ const Home: NextPage<HomeProps> = ({
       <Navbar />
       <ScrollButton />
       <div className={styles.container}>
-        <FilterInputs showFilter={false} />
+        {/* <FilterInputs showFilter={false} /> */}
         { renderAnimeLists() }
       </div>
     </div>

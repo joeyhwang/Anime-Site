@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from 'styles/AnimeId.module.scss';
 import { Anime as AnimeType } from 'components/Interfaces';
 import MiniCardRow from 'components/MiniCardRow';
 import Navbar from 'components/Navbar';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 interface infoArray {
   id: number,
@@ -23,24 +24,24 @@ const Anime = ({ data }: AnimeProps) => {
     popularity, rank, recommendations, related_anime, source, start_date,
     statistics, status, studios, synopsis, title,
   } = data || {};
+  const router = useRouter();
+  const { id : animeId} = router.query;  
   const fmtString = (s: string) => (s.split('_').map((e) => e.charAt(0).toUpperCase() + e.substring(1).toLocaleLowerCase()).join(' '));
   const convertSecondsToMin = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
-    // const sec = seconds % 60;
     const fmtNum = (num: number) => num.toString().padStart(2, '0');
     return `${fmtNum(minutes)} min`;
   };
-  // const router = useRouter();
-  // const { id } = router.query;
   const infoColumn = (infoTitle: string, value: string | number | infoArray[] | undefined) => (
     <div className={styles.infoColumn}>
       <h3>{infoTitle}</h3>
       { Array.isArray(value)
-        ? value.map(({ id, name }) => (
-          <div key={id}>
-            {name}
-          </div>
-        ))
+        ? ( value.length === 0 ? <div>unknown</div> : 
+          value.map(({ id, name }) => (
+            <div key={id}>
+              {name}
+            </div>
+        )))
         : <div>{value || 'unknown'}</div>}
     </div>
   );
@@ -64,6 +65,11 @@ const Anime = ({ data }: AnimeProps) => {
               <div>
                 <h1>
                   {`${title} (${media_type.toUpperCase()})`}
+                    &nbsp;
+                    <a href={`https://myanimelist.net/anime/${animeId}`} target="_blank">
+                      <FaExternalLinkAlt />
+                    </a>
+                    
                 </h1>
                 <div className={styles.subHeader}>
                   Rank:
@@ -98,11 +104,13 @@ const Anime = ({ data }: AnimeProps) => {
               { infoColumn(studios.length > 1 ? 'Studios' : 'Studio', studios)}
               { infoColumn('Source', fmtString(source))}
               { infoColumn('Status', fmtString(status))}
-              { infoColumn('Episode Duration', convertSecondsToMin(average_episode_duration))}
+              { infoColumn('Episode Duration', average_episode_duration === 0 ? 'unknown' : convertSecondsToMin(average_episode_duration) )}
               <div>
                 <div className={styles.infoColumn}>
                   <h3>{genres.length > 1 ? 'Genres' : 'Genre'}</h3>
-                  {genres.map(({ id, name }) => (
+                  { genres.length === 0 ? 
+                  <div>unknown</div> : 
+                  genres.map(({ id, name }) => (
                     <div key={id}>
                       {name}
                     </div>
@@ -116,22 +124,6 @@ const Anime = ({ data }: AnimeProps) => {
                 animeData={recommendations}
                 title="Recommendations"
               />
-
-              {/* <div className={styles.recommendationContainer}>
-                <h3>Recommendations</h3>
-                <div className={styles.recommendationGrid}>
-                  {
-                  recommendations.map(({ node, num_recommendations }) => (
-                    <div key={node.id}>
-                      <RecommendationCard
-                        data={node}
-                        num_recommendations={num_recommendations}
-                      />
-                    </div>
-                  ))
-                }
-                </div>
-              </div> */}
               <div>
                 <MiniCardRow
                   animeData={related_anime}
@@ -139,12 +131,9 @@ const Anime = ({ data }: AnimeProps) => {
                 />
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
-
     </div>
   );
 };

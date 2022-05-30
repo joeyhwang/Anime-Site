@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useOnScreen from 'hooks/useOnScreen';
 import styles from 'styles/AnimeCard.module.scss';
-import { AnimeCard as AnimeCardProps } from './Interfaces';
+import { AnimeCard as AnimeCardProps } from '../../Interfaces';
 // id, title, main_picture, mean, status, genres, num_episodes, start_season media_type
 const AnimeCard = ({
   title, id, main_picture, mean, status, genres, rank,
@@ -44,9 +44,9 @@ const AnimeCard = ({
             }
             <div className={styles.ratingContainer}>
               <strong>
-                {mean}
+                {mean && mean}
               </strong>
-              {` ${media_type.toUpperCase()} ${fmtString(status)}`}
+              {` ${media_type && media_type.toUpperCase()} ${status && fmtString(status)}`}
             </div>
             <div className={styles.bodyContainer}>
               {
@@ -62,7 +62,7 @@ const AnimeCard = ({
                 ? (
                   <div className={styles.studioContainer}>
                     {
-                      renderStudiosText()
+                      studios && renderStudiosText()
                     }
                   </div>
                 ) : null
@@ -75,7 +75,7 @@ const AnimeCard = ({
             && (
             <div className={styles.genreContainer}>
               {
-                genres.slice(0, 3).map(({ name, id: genreId }) => <button key={genreId} type="button">{name}</button>)
+                genres && genres.slice(0, 3).map(({ name, id: genreId }) => <button key={genreId} type="button">{name}</button>)
               }
             </div>
             )

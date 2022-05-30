@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from 'styles/Navbar.module.scss';
-import Input from 'components/Input';
+import Input from 'components/FilterInputs/Input';
 
 const Navbar = () => {
   const code = 'NklUDX_CzS8qrMGWaDzgKs6VqrinuVFHa0xnpWPDy7_fggtM6kAar4jnTwOgzK7nPYfE9n60rsY4fhDExWzr5bf7sEvMMmSXcT2hWkCstFGIJKoaimoq5GvAEQD8NZ8g';
@@ -13,8 +13,11 @@ const Navbar = () => {
           <a>Anime</a>
         </Link>
       </div>
-      <Input search searchText={searchText} setSearchText={setSearchText} />
-      <a href={`https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&code_challenge=${code}&state=RequestID42&redirect_uri=http://localhost:3000`}>login</a>
+      <div>
+        <Input search searchText={searchText} setSearchText={setSearchText} />
+        {/* <a href={`https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&code_challenge=${code}&state=RequestID42&redirect_uri=http://localhost:3000`}>Login</a> */}
+      </div>
+      
     </nav>
   );
 };

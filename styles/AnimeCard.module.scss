@@ -7,7 +7,6 @@
     position: relative;
 
     .preview {
-      display: none;
       position: absolute;
       right: -130%;
       top: 10%;
@@ -44,7 +43,6 @@
         }
       }
     }
-
     
     .title {
       font-size: 0.8rem;
@@ -73,9 +71,9 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        font-weight: bold;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
       }
-
 
       .image {
         border-radius: 10px;
@@ -83,7 +81,6 @@
   
       &:hover {
         transform: scale(1.03);
-  
       }
     }
   }

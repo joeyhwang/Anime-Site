@@ -45,8 +45,14 @@
         justify-content: space-around;
 
         h1 {
-        margin-top: 0rem;
+          margin-top: 0rem;
+          display: flex;
+          align-items: center;  
+          a {
+            font-size: 1rem;
+          }
         }
+
 
         .subHeader {
             font-size: 1.2rem;
