@@ -9,10 +9,12 @@
     border-radius: 100px;
     border: none;
     transition: all 300ms ease-in-out;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 50%;
+    box-shadow: 0 2.1px 1.3px rgba(0, 0, 0, 0.044),
+      0 5.9px 4.2px rgba(0, 0, 0, 0.054), 0 12.6px 9.5px rgba(0, 0, 0, 0.061),
+      0 25px 20px rgba(0, 0, 0, 0.1);
     &:hover {
         color: #3480EA;
-        transform: scale(1.1);
     }
     
 }

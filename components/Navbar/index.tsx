@@ -13,7 +13,7 @@ const Navbar = ({landingPage}: NavbarProps) => {
     <nav className={`${styles.nav} ${landingPage && styles.test}` } >
       <div>
         <Link href="/">
-          <a>Anime</a>
+          <a>AnimeSite</a>
         </Link>
       </div>
       <div>

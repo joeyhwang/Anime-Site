@@ -9,7 +9,7 @@ const LandingPage = () => {
             <h1>The next generation anime platform</h1>
             <p>Track, share, and discover your favorite anime </p>
             
-                <button>Discover</button>
+                <button type="button"><a href="#discover">Discover</a></button>
         </div>
     </div>
   )
