@@ -4,7 +4,7 @@ $large: 1400px;
 
 .inputContainer {
     background: #151F2E;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -16,7 +16,8 @@ $large: 1400px;
         color: white;
         margin-left: 0.3rem;
         outline: none;
-        font-size: 0.8rem;
+        font-size: clamp(0.4rem, 1vw, 1.1rem);
+        
     }
     button {
         background: #151F2E;
@@ -28,26 +29,6 @@ $large: 1400px;
 
 @media (min-width: $small) {
     .inputContainer {
-        background: #151F2E;
         padding: 0.75rem 1rem;
-        margin-right: 1rem;
-        display: flex;
-        align-items: center;
-        border-radius: 10px;
-        position: relative;
-    
-        .input {
-            background: #151F2E;
-            border: none;
-            color: white;
-            margin-left: 0.3rem;
-            outline: none;
-            font-size: 1.1rem;
-        }
-        button {
-            background: #151F2E;
-            border: none;
-            cursor: pointer;        
-        }
     }
 }

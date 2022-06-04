@@ -4,7 +4,7 @@ $large: 1400px;
 
 .card {
     display: flex;
-    width: 175px;
+    width: 140px;
     cursor: pointer;
     flex-direction: column;
     position: relative;
@@ -56,8 +56,9 @@ $large: 1400px;
     }
   
     .imageContainer {
-      width: 180px;
-      height: 280px;
+      width: 140px;
+      height: 220px;
+      
       position: relative;
       border-radius: 20px;
       transition: transform .3s;
@@ -90,6 +91,18 @@ $large: 1400px;
     }
   }
 
+
+
+@media(min-width: $small) {
+  .card {
+    width: 180px;
+
+    .imageContainer {
+      width: 180px;
+      height: 280px;
+    }
+  }
+}
 
 @media (min-width: $medium) {
   .card {

@@ -20,6 +20,11 @@ $large: 1400px;
   align-items: center;
   justify-content: space-between;
   font-size: 1.3rem;
+
+  h1 {
+    font-size: clamp(2.5rem, 2.5vw, 3.5rem);
+  }
+
   .viewMoreBtn {
     color: rgb(175, 175, 175);
     cursor: pointer;

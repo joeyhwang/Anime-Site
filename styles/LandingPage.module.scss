@@ -13,10 +13,11 @@
     .leftContainer {
         max-width: 40ch;
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 2vw, 2.8rem);
         }
         p {
             line-height: 1.6;
+            font-size: clamp(0.8rem, 0.9vw, 1rem);
         }
 
         button {

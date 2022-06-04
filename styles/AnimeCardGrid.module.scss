@@ -8,10 +8,11 @@ $large: 1400px;
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 2rem;
   transition: all 0.3s ease-in-out;
+  justify-items: center;
 }
 
 .titleContainer {
@@ -44,6 +45,14 @@ $large: 1400px;
 .horizontalGrid {
   grid-template-columns: 1fr;
 }
+
+@media(min-width: 380px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+}
+
 
 @media (min-width: $medium) {
   .container {
