@@ -162,16 +162,20 @@ const Category = ({ data }: CategoryProps) => {
 
 export async function getServerSideProps(context: { query: { category: string; }; }) {
   const { category } = context.query;
+  let data = {};
 
-  const res = await fetch(
-    `https://api.myanimelist.net/v2/anime/ranking?ranking_type=${category}&limit=100&fields=id,title,main_picture,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,background,studios`,
-    {
-      method: 'get',
-      headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-    },
-  );
+  if (process.env.NEXT_PUBLIC_CLIENT_ID) {
+    const res = await fetch(
+      `https://api.myanimelist.net/v2/anime/ranking?ranking_type=${category}&limit=100&fields=id,title,main_picture,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,background,studios`,
+      {
+        method: 'get',
+        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+      },
+    );
+    data = await res.json();
 
-  const data = await res.json();
+  }
+
 
   return {
     props: { data }, // will be passed to the page component as props

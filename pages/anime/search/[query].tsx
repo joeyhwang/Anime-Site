@@ -161,15 +161,20 @@ import React, {
   
   export async function getServerSideProps(context: { query: { query: string; }; }) {
     const { query } = context.query;
-    const res = await fetch(
+    let data = {};
+    if (process.env.NEXT_PUBLIC_CLIENT_ID) {
+      const res = await fetch(
         `https://api.myanimelist.net/v2/anime?q=${query}&limit=100&fields=id,title,main_picture,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,background,studios`,
       {
         method: 'get',
         headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
       },
     );
-  
-    const data = await res.json();
+      data = await res.json();
+    }
+
+
+    
   
     return {
       props: { data }, // will be passed to the page component as props

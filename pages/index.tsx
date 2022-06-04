@@ -96,66 +96,69 @@ const Home: NextPage<HomeProps> = ({
 };
 
 export async function getServerSideProps() {
-  const [allRes, airingRes, upcomingRes, movieRes, favoriteRes, popularityRes] = await Promise.all([
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+  if (process.env.NEXT_PUBLIC_CLIENT_ID) {
+    const [allRes, airingRes, upcomingRes, movieRes, favoriteRes, popularityRes] = await Promise.all([
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=airing&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=upcoming&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=movie&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=favorite&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+      fetch(
+        'https://api.myanimelist.net/v2/anime/ranking?ranking_type=bypopularity&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
+        {
+          method: 'get',
+          headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
+        },
+      ),
+    ]);
+  
+    const [all, airing, upcoming, movie, favorite, popularity] = await Promise.all([
+      allRes.json(),
+      airingRes.json(),
+      upcomingRes.json(),
+      movieRes.json(),
+      favoriteRes.json(),
+      popularityRes.json(),
+    ]);
+  
+    // Pass data to the page via props
+    return {
+      props: {
+        all, airing, upcoming, movie, favorite, popularity,
       },
-    ),
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=airing&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-      },
-    ),
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=upcoming&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-      },
-    ),
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=movie&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-      },
-    ),
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=favorite&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-      },
-    ),
-    fetch(
-      'https://api.myanimelist.net/v2/anime/ranking?ranking_type=bypopularity&limit=6&fields=id,title,main_picture,mean,status,genres,num_episodes,start_season,media_type,rank,studios',
-      {
-        method: 'get',
-        headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
-      },
-    ),
-  ]);
-
-  const [all, airing, upcoming, movie, favorite, popularity] = await Promise.all([
-    allRes.json(),
-    airingRes.json(),
-    upcomingRes.json(),
-    movieRes.json(),
-    favoriteRes.json(),
-    popularityRes.json(),
-  ]);
-
-  // Pass data to the page via props
-  return {
-    props: {
-      all, airing, upcoming, movie, favorite, popularity,
-    },
-  };
+    };
+  }
+  
 }
 
 export default Home;
