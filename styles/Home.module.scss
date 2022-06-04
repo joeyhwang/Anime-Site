@@ -3,15 +3,16 @@ $medium: 768px;
 $large: 1400px;
 
 .container {
-  padding: 5vw 5vw;
+  padding: 8vw;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
-  padding: 2rem;
+  padding: 1rem;
   transition: all 0.3s ease-in-out;
+  justify-items: center;
 }
 
 .titleContainer {
