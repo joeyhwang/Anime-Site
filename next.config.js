@@ -6,7 +6,7 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL,
   },
   images: {
-    domains: ['api-cdn.myanimelist.net'],
+    domains: ['api-cdn.myanimelist.net', 'cdn.myanimelist.net'],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
