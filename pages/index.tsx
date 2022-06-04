@@ -10,6 +10,7 @@ import { AnimeRes } from 'components/Interfaces';
 import ScrollButton from 'components/ScrollButton';
 import FilterInputs from 'components/FilterInputs';
 import { FiArrowRight } from 'react-icons/fi';
+import LandingPage from 'components/LandingPage';
 
 interface HomeProps {
   all: { data: AnimeRes[] },
@@ -83,8 +84,9 @@ const Home: NextPage<HomeProps> = ({
 
   return (
     <div className={styles.main}>
-      <Navbar />
+      <Navbar landingPage/>
       <ScrollButton />
+      <LandingPage />
       <div className={styles.container}>
         {/* <FilterInputs showFilter={false} /> */}
         { renderAnimeLists() }

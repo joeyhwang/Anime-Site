@@ -20,6 +20,7 @@ const AnimeInfoCard = ({
   };
 
   useEffect(() => {
+
     if (isVisible) {
       setFaded(true);
     } 
@@ -50,21 +51,20 @@ const AnimeInfoCard = ({
     </Link>
 
         <div className={styles.textContentContainer}>
-            <p>{ start_season ? `${fmtString(start_season.season)} ${start_season.year}` : 'none'}</p>
-            <div>{statusObject[status] || 'n/a'}</div>
-            <div>{media_type ? (media_type === 'movie' ? 'Movie' : media_type.toUpperCase()) : 'N/A'} - 
-            {num_episodes && num_episodes === 1 ? `${num_episodes} Episode` : `${num_episodes} Episodes`}
-            </div>
+          <div className={styles.headerContentContainer}>
+            <h3>{ start_season ? `${fmtString(start_season.season)} ${start_season.year}` : 'none'} - <span>{statusObject[status] || 'n/a'}</span></h3>
+            <p>{media_type ? (media_type === 'movie' ? 'Movie' : media_type.toUpperCase()) : 'N/A'} - {num_episodes && num_episodes === 1 ? `${num_episodes} Episode` : `${num_episodes} Episodes`}</p>
             <div>{studios && renderStudiosText()}</div>
-          
-            <div className={`${styles.synopsis}`} style={{paddingRight: synopsisActive ? 14 : 20, overflow: synopsisActive ? 'auto' : 'hidden'}} onMouseEnter={() => setSynopsisActive(true)} onMouseLeave={() => setSynopsisActive(false)}>
+          </div>
+            
+            <p className={`${styles.synopsis}`} style={{paddingRight: synopsisActive ? 14 : 20, overflow: synopsisActive ? 'auto' : 'hidden'}} onMouseEnter={() => setSynopsisActive(true)} onMouseLeave={() => setSynopsisActive(false)}>
                 {synopsis}
-            </div>
+            </p>
             <div className={styles.genreContainer}>
               { genres &&
                   genres.slice(0,3).map(({ id, name }) => (
                       <button type="button" key={id}>
-                          {name}
+                          {name.toLowerCase()}
                       </button>
               ))}
           </div>

@@ -33,7 +33,7 @@ const MiniCard = ({
     <Link href={`/anime/${id}`} passHref>
 
       <div className={styles.card} ref={cardRef}
-        style={{ opacity: faded ? 1 : 0, transition: `all ${(i % 10)/3}s ease-in-out` }}
+        style={{ opacity: faded ? 1 : 0, transition: `all 0.3s ease-in-out, opacity ${(i % 10)/3}s ease-in-out` }}
         >
         <div className={styles.imageContainer}>
           <Image

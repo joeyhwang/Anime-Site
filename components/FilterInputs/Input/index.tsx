@@ -1,8 +1,9 @@
 /* eslint-disable react/require-default-props */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdArrowDropDown } from 'react-icons/md';
 import styles from 'styles/Input.module.scss';
+import debounce from 'lodash.debounce';
 import useComponentVisible from 'hooks/useComponentVisible';
 import Dropdown from './Dropdown';
 import { useRouter } from 'next/router'
@@ -24,9 +25,6 @@ const Input = ({
     setIsComponentVisible((v) => !v);
   };
   const [selectedValue, setSelectedValue] = useState('');
-  // const onInputChange = () => {
-  //   setSelectedValue();
-  // };
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (setSearchText) {
@@ -35,13 +33,20 @@ const Input = ({
   };
 
   const pushSearch = (e: any) => {
-    console.log(router)
     if (e.key === 'Enter' && e.target.value !== '') {
       router.push(`/anime/search/${e.target.value}`).then(() => router.pathname.includes('/anime/search/') && router.reload())
       
     }
-
   }
+  const debouncedResults = useMemo(() => {
+    return debounce(onSearchChange, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
 
   return (
     <div ref={ref} className={styles.inputContainer}>
@@ -50,9 +55,9 @@ const Input = ({
           <>
             <AiOutlineSearch />
             <input
+              type='text'
               className={styles.input}
-              value={searchText}
-              onChange={(e) => onSearchChange(e)}
+              onChange={debouncedResults}
               onKeyDown={(e) => pushSearch(e)}
             />
           </>

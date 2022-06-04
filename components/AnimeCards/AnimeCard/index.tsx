@@ -75,7 +75,7 @@ const AnimeCard = ({
             && (
             <div className={styles.genreContainer}>
               {
-                genres && genres.slice(0, 3).map(({ name, id: genreId }) => <button key={genreId} type="button">{name}</button>)
+                genres && genres.slice(0, 3).map(({ name, id: genreId }) => <button key={genreId} type="button">{name.toLowerCase()}</button>)
               }
             </div>
             )

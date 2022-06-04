@@ -3,12 +3,15 @@ import Link from 'next/link';
 import styles from 'styles/Navbar.module.scss';
 import Input from 'components/FilterInputs/Input';
 
-const Navbar = () => {
-  const code = 'NklUDX_CzS8qrMGWaDzgKs6VqrinuVFHa0xnpWPDy7_fggtM6kAar4jnTwOgzK7nPYfE9n60rsY4fhDExWzr5bf7sEvMMmSXcT2hWkCstFGIJKoaimoq5GvAEQD8NZ8g';
+interface NavbarProps {
+  landingPage?: boolean,
+}
+
+const Navbar = ({landingPage}: NavbarProps) => {
   const [searchText, setSearchText] = useState('');
   return (
-    <nav className={styles.nav}>
-      <div style={{ marginRight: '2rem' }}>
+    <nav className={`${styles.nav} ${landingPage && styles.test}` } >
+      <div>
         <Link href="/">
           <a>Anime</a>
         </Link>

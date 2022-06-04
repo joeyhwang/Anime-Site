@@ -1,0 +1,33 @@
+
+.landingPageContainer {
+    background: #152232;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-image: url('/anime-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    padding: 10vw;
+    .leftContainer {
+        max-width: 35ch;
+        h1 {
+            font-size: 3rem;
+        }
+        p {
+            line-height: 1.6;
+        }
+
+        button {
+            padding: 0.7rem;
+            border-radius: 4px;
+            font-family: 'Sora', sans-serif;
+            background-color: #3480EA;
+            border: none;
+            color: white;
+            cursor: pointer;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+    }
+}

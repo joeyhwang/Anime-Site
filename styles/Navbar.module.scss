@@ -1,6 +1,12 @@
+$small: 480px;
+$medium: 768px;
+$large: 1400px;
+
+
+
 .nav {
     height: 70px;
-    padding: 0rem 10rem;
+    padding: 1vw 7vw;
     background: #152232;
     display: flex;
     align-items: center;
@@ -37,3 +43,13 @@
     }
 }
 
+.test {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: transparent;
+}
+
+@media (min-width: $small) {
+
+}

@@ -33,14 +33,14 @@ const FilterInputs = ({ showFilter, filterText, setFilterText, filterButton, set
           <h2>Genres</h2>
           <Input dropDownItems={seasonDropdownItems} search={false} />
         </div> */}
-        <div className={styles.queryContainer}>
+        {/* <div className={styles.queryContainer}>
           <h2>Season</h2>
           <Input dropDownItems={seasonDropdownItems} search={false} />
         </div>
         <div className={styles.queryContainer}>
           <h2>Year</h2>
           <Input dropDownItems={yearDropdownItems} search={false} />
-        </div>
+        </div> */}
       </div>
 
       { filterButton !== undefined && setFilterButton && 

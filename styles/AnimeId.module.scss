@@ -1,3 +1,7 @@
+$small: 480px;
+$medium: 768px;
+$large: 1400px;
+
 .container {
   padding: 1vw 5vw;  
 }
@@ -12,7 +16,6 @@
         padding: 2rem;
         background-color: #151F2E;
         border-radius: 10px;
-
         .imageContainer {
           min-width: 190px;
           height: 280px;
@@ -50,6 +53,11 @@
           align-items: center;  
           a {
             font-size: 1rem;
+            color: rgb(202, 199, 199);
+            transition: all 0.3s ease-in-out;
+            :hover {
+              color: white;
+            }
           }
         }
 
@@ -110,7 +118,7 @@
   //   }
   // }
   
-  @media (min-width: 800px) {
+  @media (min-width: $medium) {
     .container {
       padding: 1vw 7vw;
     }
@@ -119,7 +127,7 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  @media (min-width: 1400px) {
+  @media (min-width: $large) {
     .container {
       padding: 1vw 10vw;
     }

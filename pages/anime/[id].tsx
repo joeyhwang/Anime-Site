@@ -66,6 +66,7 @@ const Anime = ({ data }: AnimeProps) => {
                 <h1>
                   {`${title} (${media_type.toUpperCase()})`}
                     &nbsp;
+                    &nbsp;
                     <a href={`https://myanimelist.net/anime/${animeId}`} target="_blank">
                       <FaExternalLinkAlt />
                     </a>

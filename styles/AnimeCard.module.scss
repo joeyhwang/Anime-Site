@@ -1,3 +1,6 @@
+$small: 480px;
+$medium: 768px;
+$large: 1400px;
 
 .card {
     display: flex;
@@ -15,11 +18,11 @@
       background: #151F2E;
       color: white;
       border-radius: 10px;
-      z-index: 1;
+      z-index: 100;
       padding: 1rem 1.2rem 1.2rem 1.2rem;
       flex-direction: column;
       justify-content: space-between;
-
+      opacity: 0;
       .topPreviewContainer {
         h2 {
           margin: 0;
@@ -36,10 +39,12 @@
         justify-content: center;
         gap: 0.4rem;
         button {
-          font-size: 0.7rem;
+          font-size: 0.6rem;
+          font-weight: bold;
           border-radius: 10px;
           border: none;
-          padding: 0.2rem 0.5rem;
+          padding: 0.3rem 0.5rem;
+          text-align: center;
         }
       }
     }
@@ -86,8 +91,10 @@
   }
 
 
-@media (min-width: 600px) {
-  .preview {
-    display: flex;
+@media (min-width: $medium) {
+  .card {
+    .preview {
+      opacity: 1;
+    }
   }
 }

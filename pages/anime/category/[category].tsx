@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import styles from 'styles/Home.module.scss';
+import styles from 'styles/Category.module.scss';
 import { AnimeRes } from 'components/Interfaces';
 import AnimeCard from 'components/AnimeCards/AnimeCard';
 import Navbar from 'components/Navbar';
@@ -164,7 +164,7 @@ export async function getServerSideProps(context: { query: { category: string; }
   const { category } = context.query;
 
   const res = await fetch(
-    `https://api.myanimelist.net/v2/anime/ranking?ranking_type=${category}&limit=50&fields=id,title,main_picture,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,background,studios`,
+    `https://api.myanimelist.net/v2/anime/ranking?ranking_type=${category}&limit=100&fields=id,title,main_picture,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,background,studios`,
     {
       method: 'get',
       headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),

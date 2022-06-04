@@ -46,7 +46,7 @@ const HorizontalAnimeCard = ({
                 { genres &&
                     genres.map(({ id, name }) => (
                         <button type="button" key={id}>
-                            {name}
+                            {name.toLowerCase()}
                         </button>
                 ))}
                 </div>
@@ -55,15 +55,15 @@ const HorizontalAnimeCard = ({
         
         <div className={styles.rowItemsContainer} style={{ justifyContent: 'space-evenly'}}>
             <div className={styles.columnContainer}>
-                <div>Score: {mean || 'n/a'}</div>
+                <h3>Score: {mean || 'n/a'}</h3>
                 <p>Users: {num_list_users && num_list_users.toLocaleString('en-US') || 'n/a'}</p>
             </div>
             <div className={styles.columnContainer}>
-                <div>{media_type ? (media_type === 'movie' ? 'Movie' : media_type.toUpperCase()) : 'N/A'}</div>
+                <h3>{media_type ? (media_type === 'movie' ? 'Movie' : media_type.toUpperCase()) : 'N/A'}</h3>
                 <p>{num_episodes && num_episodes === 1 ? `${num_episodes} Episode` : `${num_episodes} Episodes`}</p>
             </div>
             <div className={styles.columnContainer}>
-                <div>{statusObject[status] || 'n/a'}</div>
+                <h3>{statusObject[status] || 'n/a'}</h3>
                 <p>{ start_season ? `${fmtString(start_season.season)} ${start_season.year}` : 'none'}</p>
             </div>
         </div>
