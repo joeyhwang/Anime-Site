@@ -8,8 +8,12 @@ Live: https://anime-site-gamma.vercel.app/
 - Implemented grid and row views to enhance browsing experience
 - The frontend and backend are deployed on Vercel
 
+![anime-site](https://user-images.githubusercontent.com/19678167/172015501-69fddb3f-6f2f-4b24-87f5-7230482d9126.jpg)
+
+
 <!-- ## How to run project on localhost
-- git clone https://github.com/joeyhwang/sneaker-ecommerce-web.git
+- git clone https://github.com/joeyhwang/sneaker-ecommerce-web.git![Uploading anime-site.jpg…]()
+
 - In sneaker-ecommerce-web directory, open terminal and use "npm i" to install dependencies
 - cd to frontend directory and use "npm i" to install dependencies
 - Create .env files in sneaker-ecommerce-web directory and frontend folder, directions are listed below
