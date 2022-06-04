@@ -1,12 +1,11 @@
 # Anime Site
 
 # Live Website (Deployed on Vercel)
-Live: https://warm-plains-75848.herokuapp.com/
+Live: https://anime-site-gamma.vercel.app/
 
 ## Website Description
-- Customers can log in through Google and Facebook OAuth using PassportJS and customers can add/remove sneakers to cart to checkout. 
-- Sneakers are checked out using Stripe API and orders are logged in the account tab.
-- To simulate checkout, you must be logged in and use Stripe's credit card number: 4242 4242 4242 4242, expiration: 4/24, cvv: 424  
+- Integrated MyAnimeList API to allow users to query, filter, and browse through hundreds of anime
+- Implemented grid and row views to enhance browsing experience
 - The frontend and backend are deployed on Vercel
 
 <!-- ## How to run project on localhost
