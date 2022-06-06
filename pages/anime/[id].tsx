@@ -25,7 +25,7 @@ const Anime = ({ data }: AnimeProps) => {
     statistics, status, studios, synopsis, title,
   } = data || {};
   const router = useRouter();
-  const { id : animeId} = router.query;  
+  const { id: animeId } = router.query;
   const fmtString = (s: string) => (s.split('_').map((e) => e.charAt(0).toUpperCase() + e.substring(1).toLocaleLowerCase()).join(' '));
   const convertSecondsToMin = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -36,12 +36,12 @@ const Anime = ({ data }: AnimeProps) => {
     <div className={styles.infoColumn}>
       <h3>{infoTitle}</h3>
       { Array.isArray(value)
-        ? ( value.length === 0 ? <div>unknown</div> : 
-          value.map(({ id, name }) => (
+        ? (value.length === 0 ? <div>unknown</div>
+          : value.map(({ id, name }) => (
             <div key={id}>
               {name}
             </div>
-        )))
+          )))
         : <div>{value || 'unknown'}</div>}
     </div>
   );
@@ -67,10 +67,10 @@ const Anime = ({ data }: AnimeProps) => {
                   {`${title} (${media_type.toUpperCase()})`}
                     &nbsp;
                     &nbsp;
-                    <a href={`https://myanimelist.net/anime/${animeId}`} target="_blank">
-                      <FaExternalLinkAlt />
-                    </a>
-                    
+                  <a href={`https://myanimelist.net/anime/${animeId}`} target="_blank" rel="noreferrer">
+                    <FaExternalLinkAlt />
+                  </a>
+
                 </h1>
                 <div className={styles.subHeader}>
                   Rank:
@@ -105,22 +105,22 @@ const Anime = ({ data }: AnimeProps) => {
               { infoColumn(studios.length > 1 ? 'Studios' : 'Studio', studios)}
               { infoColumn('Source', fmtString(source))}
               { infoColumn('Status', fmtString(status))}
-              { infoColumn('Episode Duration', average_episode_duration === 0 ? 'unknown' : convertSecondsToMin(average_episode_duration) )}
+              { infoColumn('Episode Duration', average_episode_duration === 0 ? 'unknown' : convertSecondsToMin(average_episode_duration))}
               <div>
                 <div className={styles.infoColumn}>
                   <h3>{genres.length > 1 ? 'Genres' : 'Genre'}</h3>
-                  { genres.length === 0 ? 
-                  <div>unknown</div> : 
-                  genres.map(({ id, name }) => (
-                    <div key={id}>
-                      {name}
-                    </div>
-                  ))}
+                  { genres.length === 0
+                    ? <div>unknown</div>
+                    : genres.map(({ id, name }) => (
+                      <div key={id}>
+                        {name}
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
 
-            <div className={styles.placeholder}>
+            <div className={styles.placeholder} style={{ width:'100%'}}>
               <MiniCardRow
                 animeData={recommendations}
                 title="Recommendations"
@@ -141,7 +141,7 @@ const Anime = ({ data }: AnimeProps) => {
 
 export async function getServerSideProps(context: { query: { id: number; }; }) {
   const { id } = context.query;
-  let data = {}
+  let data = {};
   if (process.env.NEXT_PUBLIC_CLIENT_ID) {
     const res = await fetch(
       `https://api.myanimelist.net/v2/anime/${id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics`,
@@ -150,10 +150,9 @@ export async function getServerSideProps(context: { query: { id: number; }; }) {
         headers: new Headers({ 'X-MAL-CLIENT-ID': process.env.NEXT_PUBLIC_CLIENT_ID }),
       },
     );
-  
+
     data = await res.json();
   }
-
 
   return {
     props: { data }, // will be passed to the page component as props

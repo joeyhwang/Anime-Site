@@ -5,8 +5,8 @@ import { MdArrowDropDown } from 'react-icons/md';
 import styles from 'styles/Input.module.scss';
 import debounce from 'lodash.debounce';
 import useComponentVisible from 'hooks/useComponentVisible';
+import { useRouter } from 'next/router';
 import Dropdown from './Dropdown';
-import { useRouter } from 'next/router'
 
 interface InputProps {
   search: Boolean,
@@ -34,18 +34,13 @@ const Input = ({
 
   const pushSearch = (e: any) => {
     if (e.key === 'Enter' && e.target.value !== '') {
-      router.push(`/anime/search/${e.target.value}`).then(() => router.pathname.includes('/anime/search/') && router.reload())
-      
+      router.push(`/anime/search/${e.target.value}`).then(() => router.pathname.includes('/anime/search/') && router.reload());
     }
-  }
-  const debouncedResults = useMemo(() => {
-    return debounce(onSearchChange, 300);
-  }, []);
+  };
+  const debouncedResults = useMemo(() => debounce(onSearchChange, 300), []);
 
-  useEffect(() => {
-    return () => {
-      debouncedResults.cancel();
-    };
+  useEffect(() => () => {
+    debouncedResults.cancel();
   });
 
   return (
@@ -55,7 +50,7 @@ const Input = ({
           <>
             <AiOutlineSearch />
             <input
-              type='text'
+              type="text"
               className={styles.input}
               onChange={debouncedResults}
               onKeyDown={(e) => pushSearch(e)}

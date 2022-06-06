@@ -3,7 +3,7 @@ $medium: 768px;
 $large: 1400px;
 
 .container {
-  padding: 1vw 5vw;  
+  padding: 5vw 5vw;  
 }
 
 .body {
@@ -120,7 +120,7 @@ $large: 1400px;
   
   @media (min-width: $medium) {
     .container {
-      padding: 1vw 7vw;
+      padding: 5vw 7vw;
     }
   
     .grid {
@@ -130,6 +130,7 @@ $large: 1400px;
   @media (min-width: $large) {
     .container {
       padding: 1vw 10vw;
+      padding-bottom: 3vw;
     }
     .grid {
       grid-template-columns: repeat(6, 1fr);

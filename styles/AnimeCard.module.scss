@@ -11,9 +11,9 @@ $large: 1400px;
 
     .preview {
       position: absolute;
-      right: -130%;
+      right: -152%;
       top: 10%;
-      width: 15rem;
+      width: 16rem;
       height: 60%;
       background: #151F2E;
       color: white;
@@ -23,6 +23,7 @@ $large: 1400px;
       flex-direction: column;
       justify-content: space-between;
       opacity: 0;
+
       .topPreviewContainer {
         h2 {
           margin: 0;
@@ -42,13 +43,21 @@ $large: 1400px;
           font-size: 0.6rem;
           font-weight: bold;
           border-radius: 10px;
-          border: none;
-          padding: 0.3rem 0.5rem;
+          border:1px solid gray;
+
+          padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+          box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
           text-align: center;
+          
         }
       }
     }
-    
+
+    .previewLeft {
+      right: 110%;
+
+    }
+
     .title {
       font-size: 0.8rem;
       margin-top: 0.4rem;

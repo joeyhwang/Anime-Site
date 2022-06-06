@@ -5,14 +5,9 @@ interface CategoryProps {
   data: { data: AnimeRes[], paging: { next: string, previous?: string } }
 }
 
-const Category = ({ data }: CategoryProps) => {
-
-  return (
-    <>
-      <AnimeCardGrid data={data} />
-    </>
-  );
-};
+const Category = ({ data }: CategoryProps) => (
+  <AnimeCardGrid data={data} />
+);
 
 export async function getServerSideProps(context: { query: { category: string; }; }) {
   const { category } = context.query;
@@ -27,7 +22,6 @@ export async function getServerSideProps(context: { query: { category: string; }
       },
     );
     data = await res.json();
-
   }
 
   return {

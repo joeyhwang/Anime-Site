@@ -15,7 +15,9 @@ interface Props {
 
 const MiniCardRow = ({ animeData = [], title }: Props) => {
   const [showMore, setShowMore] = useState(false);
-  const animeDataSlice = showMore ? animeData : animeData.slice(0, 10);
+  // const animeDataSlice = showMore ? animeData : animeData.slice(0, 10); 
+  const animeDataSlice = animeData;
+
 
   return (
     <div className={styles.recommendationContainer}>
@@ -34,24 +36,24 @@ const MiniCardRow = ({ animeData = [], title }: Props) => {
               )
             }
           </div>
-          <div className={styles.recommendationGrid}>
+          <div className={`${styles.recommendationGrid} ${showMore && styles.showMore}`}>
             {
               animeDataSlice.map(({ node, num_recommendations, relation_type_formatted }, i) => (
-                <div key={node.id}>
+                <>
                   <MiniCard
+                    key={node.id}
                     data={node}
                     num_recommendations={num_recommendations}
                     relation_type_formatted={relation_type_formatted}
                     i={i}
                   />
-                </div>
+                </>
               ))
             }
           </div>
         </>
         )
       }
-
     </div>
   );
 };

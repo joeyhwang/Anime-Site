@@ -84,7 +84,7 @@ const Home: NextPage<HomeProps> = ({
 
   return (
     <div className={styles.main}>
-      <Navbar landingPage/>
+      <Navbar landingPage />
       <ScrollButton />
       <LandingPage />
       <div id="discover" className={styles.container}>
@@ -141,7 +141,7 @@ export async function getServerSideProps() {
         },
       ),
     ]);
-  
+
     const [all, airing, upcoming, movie, favorite, popularity] = await Promise.all([
       allRes.json(),
       airingRes.json(),
@@ -150,7 +150,7 @@ export async function getServerSideProps() {
       favoriteRes.json(),
       popularityRes.json(),
     ]);
-  
+
     // Pass data to the page via props
     return {
       props: {
@@ -158,7 +158,6 @@ export async function getServerSideProps() {
       },
     };
   }
-  
 }
 
 export default Home;

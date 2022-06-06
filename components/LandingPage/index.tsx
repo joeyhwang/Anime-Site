@@ -1,18 +1,16 @@
-import React from 'react'
+import React from 'react';
 import styles from 'styles/LandingPage.module.scss';
 
-const LandingPage = () => {
-  return (
+const LandingPage = () => (
 
-    <div className={styles.landingPageContainer}>
-        <div className={styles.leftContainer}>
-            <h1>The next generation anime platform</h1>
-            <p>Track, share, and discover your favorite anime </p>
-            
-                <button type="button"><a href="#discover">Discover</a></button>
-        </div>
+  <div className={styles.landingPageContainer}>
+    <div className={styles.leftContainer}>
+      <h1>The next generation anime platform</h1>
+      <p>Track, share, and discover your favorite anime </p>
+
+      <button type="button"><a href="#discover">Discover</a></button>
     </div>
-  )
-}
+  </div>
+);
 
-export default LandingPage
+export default LandingPage;

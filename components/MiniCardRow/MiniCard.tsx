@@ -15,26 +15,28 @@ interface RecommendationCardProps {
 }
 
 const MiniCard = ({
-  data, num_recommendations, relation_type_formatted, i
+  data, num_recommendations, relation_type_formatted, i,
 }: RecommendationCardProps) => {
   const { id, title, main_picture: mainPicture } = data;
   const overflowRef = useRef<HTMLHeadingElement>(null);
-  const isOverflow = useIsOverflow(overflowRef, true, undefined);
+  // const isOverflow = useIsOverflow(overflowRef, true, undefined);
   const cardRef = useRef() as React.MutableRefObject<any>;
   const [faded, setFaded] = useState(false);
   const isVisible = useOnScreen(cardRef);
   useEffect(() => {
     if (isVisible) {
       setFaded(true);
-    } 
-  },[isVisible])
+    }
+  }, [isVisible]);
 
   return (
     <Link href={`/anime/${id}`} passHref>
 
-      <div className={styles.card} ref={cardRef}
-        style={{ opacity: faded ? 1 : 0, transition: `all 0.3s ease-in-out, opacity ${(i % 10)/3}s ease-in-out` }}
-        >
+      <div
+        className={styles.card}
+        ref={cardRef}
+        style={{ opacity: faded ? 1 : 0, transition: `all 0.3s ease-in-out, opacity ${(i % 10) / 3}s ease-in-out` }}
+      >
         <div className={styles.imageContainer}>
           <Image
             src={mainPicture.large}

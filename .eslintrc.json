@@ -1,6 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript",
-    "plugin:jest/recommended", "plugin:jest/style", "plugin:testing-library"
+    "plugin:jest/recommended", "plugin:jest/style"
+    // "plugin:testing-library"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -11,7 +12,8 @@
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function",
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "@typescript-eslint/camelcase": "off",
       }
     ],
     "jsx-a11y/anchor-is-valid": [ "error", {

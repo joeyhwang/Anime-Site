@@ -21,7 +21,8 @@ export interface AnimeRes {
     mean: number, status: string, genres: Genres[], rank: number,
     num_episodes: number, start_season: { year: number, season: string }, media_type: string,
     studios: { id: number, name: string }[], num_recommendations: number,
-    relation_type: string, relation_type_formatted: string, num_list_users?: number, synopsis?: string }
+    relation_type: string, relation_type_formatted: string, num_list_users?: number,
+    synopsis?: string }
 }
 interface Broadcast {
   day_of_the_week: string,

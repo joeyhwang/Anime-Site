@@ -1,5 +1,5 @@
 import React, {
-    useState, useRef, useEffect, Fragment,
+  useState, useRef, useEffect, Fragment,
 } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -14,60 +14,78 @@ import HorizontalAnimeCard from 'components/AnimeCards/HorizontalAnimeCard';
 import AnimeInfoCard from 'components/AnimeCards/AnimeInfoCard';
 
 interface AnimeCardGridProps {
-    data: { data: AnimeRes[], paging: { next: string, previous?: string } },
+  data: { data: AnimeRes[], paging?: { next: string, previous?: string } },
 }
 
-const AnimeCardGrid = ({data}: AnimeCardGridProps) => {
-    const router = useRouter();
-    const { category, query } = router.query;
-    const [next, setNext] = useState(data.paging.next);
-    const [animeData, setAnimeData] = useState(data.data);
-    const [filterButtonActive, setFilterButtonActive] = useState<0 | 1 | 2>(0);
-    const gridRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-    const isVisible = useOnScreen(gridRef);
-    const [filterText, setFilterText] = useState('');
-    const titleObject : { [key: string]: string} = {'all': 'All Time', 'bypopularity': 'Most Popular', 'airing': 'Currently Airing',
-    'favorite': 'Favorites', 'movie': 'Movies', 'upcoming': 'Upcoming'}
-    const categoryString = typeof category === 'string' ? category : ''
-    useEffect(() => {
-      if (filterText === '' && isVisible && next) {
-        axios.get('/api/hello', { params: { url: next } }).then((res) => res.data.data).then(({ data: d, paging: p }) => {
-          setAnimeData((animeD) => [...animeD, ...d]);
-          setNext(p.next);
-        });
-      }
-    }, [isVisible, next, filterText]);
+const AnimeCardGrid = ({ data }: AnimeCardGridProps) => {
 
+  if (!data) {
+    return null
+  }
 
-    return (
-        <>
-          <Navbar />
-          <div className={styles.container}>
-          <div className={styles.titleContainer}>
-                {
-                category &&
-                  <h1>{titleObject[categoryString]}</h1>
+  const router = useRouter();
+  const { category, query } = router.query;
+  const [next, setNext] = useState(data.paging?.next);
+  const [animeData, setAnimeData] = useState(data.data);
+  const [filterButtonActive, setFilterButtonActive] = useState<0 | 1 | 2>(0);
+  const gridRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const isVisible = useOnScreen(gridRef);
+  const [filterText, setFilterText] = useState('');
+  const titleObject : { [key: string]: string } = {
+    all: 'All Time',
+    bypopularity: 'Most Popular',
+    airing: 'Currently Airing',
+    favorite: 'Favorites',
+    movie: 'Movies',
+    upcoming: 'Upcoming',
+  };
+  const categoryString = typeof category === 'string' ? category : '';
+  useEffect(() => {
+    if (filterText === '' && isVisible && next) {
+      axios.get('/api/hello', { params: { url: next } }).then((res) => res.data.data).then(({ data: d, paging: p }) => {
+        setAnimeData((animeD) => [...animeD, ...d]);
+        setNext(p.next);
+      });
+    }
+  }, [isVisible, next, filterText]);
+
+  return (
+    <>
+      <Navbar />
+      <div className={styles.container}>
+        <div className={styles.titleContainer}>
+          {
+                category
+                  && <h1>{titleObject[categoryString]}</h1>
                 }
-                {
-                    query && <h1>Results for "{query}"</h1>
+          {
+                    query && (
+                    <h1>
+                      {`Results for "${query}"`}
+                    </h1>
+                    )
                 }
-            </div>
-            <FilterInputs showFilter filterText={filterText} setFilterText={setFilterText}
-             setFilterButton={setFilterButtonActive} filterButton={filterButtonActive}
-            />
-            <ScrollButton />
-     
-            <div className={styles.grid} style={{ display: filterButtonActive === 0 ? 'grid' : 'none'}}>
-              { animeData && animeData.map(({ node }, i) => {
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                const {
-                  title, id, main_picture, mean, status, genres, rank,
-                  num_episodes, start_season, media_type, studios, num_list_users
-                } = node;
-    
-                return (
-                  <Fragment key={id}>
-                    {(title.toLowerCase().includes(filterText.toLowerCase()))
+        </div>
+        <FilterInputs
+          showFilter
+          filterText={filterText}
+          setFilterText={setFilterText}
+          setFilterButton={setFilterButtonActive}
+          filterButton={filterButtonActive}
+        />
+        <ScrollButton />
+
+        <div className={styles.grid} style={{ display: filterButtonActive === 0 ? 'grid' : 'none' }}>
+          { animeData && animeData.map(({ node }, i) => {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            const {
+              title, id, main_picture, mean, status, genres, rank,
+              num_episodes, start_season, media_type, studios, num_list_users,
+            } = node;
+
+            return (
+              <Fragment key={id}>
+                {(title.toLowerCase().includes(filterText.toLowerCase()))
                       && (
                         <AnimeCard
                           title={title}
@@ -85,22 +103,22 @@ const AnimeCardGrid = ({data}: AnimeCardGridProps) => {
                           i={i}
                         />
                       )}
-                  </Fragment>
-                );
-              })}
-            </div>
-    
-            <div className={styles.infoGrid} style={{ display: filterButtonActive === 1 ? 'grid' : 'none'}}>
-              { animeData && animeData.map(({ node }, i) => {
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
-                  const {
-                    title, id, main_picture, mean, status, genres, rank,
-                    num_episodes, start_season, media_type, studios, num_list_users, synopsis
-                  } = node;
-    
-                  return (
-                    <Fragment key={id}>
-                      {(title.toLowerCase().includes(filterText.toLowerCase()))
+              </Fragment>
+            );
+          })}
+        </div>
+
+        <div className={styles.infoGrid} style={{ display: filterButtonActive === 1 ? 'grid' : 'none' }}>
+          { animeData && animeData.map(({ node }, i) => {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            const {
+              title, id, main_picture, mean, status, genres, rank,
+              num_episodes, start_season, media_type, studios, num_list_users, synopsis,
+            } = node;
+
+            return (
+              <Fragment key={id}>
+                {(title.toLowerCase().includes(filterText.toLowerCase()))
                         && (
                           <AnimeInfoCard
                             title={title}
@@ -119,22 +137,22 @@ const AnimeCardGrid = ({data}: AnimeCardGridProps) => {
                             synopsis={synopsis}
                           />
                         )}
-    
-                    </Fragment>
-                  );
-                })}
-            </div>
-            <div className={styles.horizontalGrid} style={{ display: filterButtonActive === 2 ? 'grid' : 'none'}}>
-              { animeData && animeData.map(({ node }, i) => {
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
-                  const {
-                    title, id, main_picture, mean, status, genres, rank,
-                    num_episodes, start_season, media_type, studios, num_list_users,
-                  } = node;
-    
-                  return (
-                    <Fragment key={id}>
-                      {(title.toLowerCase().includes(filterText.toLowerCase()))
+
+              </Fragment>
+            );
+          })}
+        </div>
+        <div className={styles.horizontalGrid} style={{ display: filterButtonActive === 2 ? 'grid' : 'none' }}>
+          { animeData && animeData.map(({ node }, i) => {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            const {
+              title, id, main_picture, mean, status, genres, rank,
+              num_episodes, start_season, media_type, studios, num_list_users,
+            } = node;
+
+            return (
+              <Fragment key={id}>
+                {(title.toLowerCase().includes(filterText.toLowerCase()))
                         && (
                           <HorizontalAnimeCard
                             title={title}
@@ -152,15 +170,15 @@ const AnimeCardGrid = ({data}: AnimeCardGridProps) => {
                             i={i}
                           />
                         )}
-    
-                    </Fragment>
-                  );
-                })}
-            </div>
-            <div style={{ height: 0 }} ref={gridRef} />
-          </div>
-        </>
-      );
-}
 
-export default AnimeCardGrid
+              </Fragment>
+            );
+          })}
+        </div>
+        <div style={{ height: 0 }} ref={gridRef} />
+      </div>
+    </>
+  );
+};
+
+export default AnimeCardGrid;
