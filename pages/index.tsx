@@ -7,7 +7,7 @@ import styles from 'styles/Home.module.scss';
 import Navbar from 'components/Navbar';
 import AnimeCard from 'components/AnimeCards/AnimeCard';
 import { AnimeRes } from 'components/Interfaces';
-import ScrollButton from 'components/ScrollButton';
+import ScrollButton from 'components/Buttons/ScrollButton';
 import FilterInputs from 'components/FilterInputs';
 import { FiArrowRight } from 'react-icons/fi';
 import LandingPage from 'components/LandingPage';

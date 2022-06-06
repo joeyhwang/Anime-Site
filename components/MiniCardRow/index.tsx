@@ -1,8 +1,11 @@
 /* eslint-disable react/require-default-props */
-import React, { useState } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Anime } from 'components/Interfaces';
 import styles from 'styles/MiniCardRow.module.scss';
 import MiniCard from './MiniCard';
+import ViewMoreButton from 'components/Buttons/ViewMoreButton';
+import useToggle from 'hooks/useToggle';
+import useIsOverflow from 'hooks/useIsOverflow';
 
 interface Data {
   node: Anime, relation_type_formatted?: string, num_recommendations?: number,
@@ -14,10 +17,10 @@ interface Props {
 }
 
 const MiniCardRow = ({ animeData = [], title }: Props) => {
-  const [showMore, setShowMore] = useState(false);
-  // const animeDataSlice = showMore ? animeData : animeData.slice(0, 10); 
   const animeDataSlice = animeData;
-
+  const [showMore, setShowMore] = useToggle();
+  const overflowRef = useRef<HTMLHeadingElement>(null);
+  const isOverflow = useIsOverflow(overflowRef, true, undefined);
 
   return (
     <div className={styles.recommendationContainer}>
@@ -28,26 +31,24 @@ const MiniCardRow = ({ animeData = [], title }: Props) => {
           <div className={styles.titleContainer}>
             <h3>{title}</h3>
             {
-              (animeData.length > 10)
+              isOverflow
               && (
-              <button type="button" onClick={() => setShowMore((show) => !show)}>
-                {showMore ? 'Show Less' : 'Show More'}
-              </button>
+                <ViewMoreButton text='show' setViewMore={setShowMore} viewMore={showMore}/>
               )
             }
           </div>
-          <div className={`${styles.recommendationGrid} ${showMore && styles.showMore}`}>
+          <div ref={overflowRef} className={`${styles.recommendationGrid} ${showMore && styles.showMore}`}>
             {
               animeDataSlice.map(({ node, num_recommendations, relation_type_formatted }, i) => (
-                <>
+                <Fragment key={node.id}
+                >
                   <MiniCard
-                    key={node.id}
                     data={node}
                     num_recommendations={num_recommendations}
                     relation_type_formatted={relation_type_formatted}
                     i={i}
                   />
-                </>
+                </Fragment>
               ))
             }
           </div>

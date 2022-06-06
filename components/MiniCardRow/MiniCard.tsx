@@ -35,7 +35,7 @@ const MiniCard = ({
       <div
         className={styles.card}
         ref={cardRef}
-        style={{ opacity: faded ? 1 : 0, transition: `all 0.3s ease-in-out, opacity ${(i) / 8}s ease-in-out` }}
+        style={{ opacity: faded ? 1 : 0, transition: `all 0.3s ease-in-out, opacity ${(i) / 20}s ease-in-out` }}
       >
         <div className={styles.imageContainer}>
           <Image

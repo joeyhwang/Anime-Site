@@ -8,7 +8,7 @@ import { AnimeRes } from 'components/Interfaces';
 import AnimeCard from 'components/AnimeCards/AnimeCard';
 import Navbar from 'components/Navbar';
 import useOnScreen from 'hooks/useOnScreen';
-import ScrollButton from 'components/ScrollButton';
+import ScrollButton from 'components/Buttons/ScrollButton';
 import FilterInputs from 'components/FilterInputs';
 import HorizontalAnimeCard from 'components/AnimeCards/HorizontalAnimeCard';
 import AnimeInfoCard from 'components/AnimeCards/AnimeInfoCard';

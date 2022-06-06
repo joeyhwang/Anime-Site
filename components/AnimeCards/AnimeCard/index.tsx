@@ -43,7 +43,7 @@ const AnimeCard = ({
         onMouseEnter={() => setShowHoverCard(true)}
         onMouseLeave={() => setShowHoverCard(false)}
         ref={cardRef}
-        style={{ opacity: faded ? 1 : 0, transition: `all ${(i % 6) / 3}s ease-in-out` }}
+        style={{ opacity: faded ? 1 : 0, transition: `all ${(i % 6) / 3.5}s ease-in-out` }}
       >
         <div className={`${styles.preview} ${overflow && styles.previewLeft}`} ref={previewRef} style={{ display: showHoverCard ? 'flex' : 'none' }}>
           <div className={styles.topPreviewContainer}>
