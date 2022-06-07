@@ -22,6 +22,7 @@ const AnimeCard = ({
     return <div>{studioArray.join(', ')}</div>;
   };
 
+  console.log(overflow);
   useEffect(() => {
     if (isVisible) {
       setFaded(true);
@@ -30,7 +31,7 @@ const AnimeCard = ({
 
   useEffect(() => {
     const { right } = previewRef.current.getBoundingClientRect();
-    if (right >= window.innerWidth) {
+    if (right + 100 >= window.innerWidth) {
       setOverflow(true);
     }
   }, [showHoverCard]);

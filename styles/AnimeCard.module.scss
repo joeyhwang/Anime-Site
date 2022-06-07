@@ -14,7 +14,7 @@ $large: 1400px;
       right: -152%;
       top: 10%;
       width: 16rem;
-      height: 60%;
+      min-height: 60%;
       background: #151F2E;
       color: white;
       border-radius: 10px;
@@ -32,6 +32,10 @@ $large: 1400px;
           font-size: 0.85rem;
           margin-bottom: 0.6rem;
         }
+      }
+
+      .bodyContainer {
+        margin-bottom: 1.5rem;
       }
 
       .genreContainer {
