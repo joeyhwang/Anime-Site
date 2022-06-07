@@ -18,9 +18,8 @@ const AnimeInfoCard = ({
     const studioArray = studios.map(({ name }) => name);
     return <div>{studioArray.join(', ')}</div>;
   };
-
   const mediaText =  media_type === 'movie' ? 'Movie' : media_type.toUpperCase();
-  const startSeasonText = `${fmtString(start_season.season)} ${start_season.year}`;
+  const startSeasonText = start_season && `${fmtString(start_season.season)} ${start_season.year}`;
   useEffect(() => {
     if (isVisible) {
       setFaded(true);
