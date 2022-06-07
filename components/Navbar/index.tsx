@@ -19,7 +19,7 @@ const Navbar = ({ landingPage }: NavbarProps) => {
         </Link>
       </div>
       <div>
-        <Input search searchText={searchText} setSearchText={setSearchText} />
+        <Input search searchText={searchText} setSearchText={setSearchText} searchOnEnter />
         {/* <a href={`https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}&code_challenge=${code}&state=RequestID42&redirect_uri=http://localhost:3000`}>Login</a> */}
       </div>
 

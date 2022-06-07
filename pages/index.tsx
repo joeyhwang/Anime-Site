@@ -88,7 +88,6 @@ const Home: NextPage<HomeProps> = ({
       <ScrollButton />
       <LandingPage />
       <div id="discover" className={styles.container}>
-        {/* <FilterInputs showFilter={false} /> */}
         { renderAnimeLists() }
       </div>
     </div>

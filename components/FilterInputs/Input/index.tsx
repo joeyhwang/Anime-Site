@@ -13,10 +13,11 @@ interface InputProps {
   dropDownItems?: string[],
   searchText?: string,
   setSearchText?: React.Dispatch<React.SetStateAction<string>>,
+  searchOnEnter?: boolean,
 }
 
 const Input = ({
-  search, dropDownItems = [], searchText, setSearchText,
+  search, dropDownItems = [], searchText, setSearchText, searchOnEnter
 }: InputProps) => {
   const router = useRouter();
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
@@ -33,7 +34,7 @@ const Input = ({
   };
 
   const pushSearch = (e: any) => {
-    if (e.key === 'Enter' && e.target.value !== '') {
+    if (searchOnEnter && e.key === 'Enter' && e.target.value !== '') {
       router.push(`/anime/search/${e.target.value}`).then(() => router.pathname.includes('/anime/search/') && router.reload());
     }
   };
