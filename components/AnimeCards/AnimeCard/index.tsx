@@ -22,7 +22,6 @@ const AnimeCard = ({
     return <div>{studioArray.join(', ')}</div>;
   };
 
-  console.log(overflow);
   useEffect(() => {
     if (isVisible) {
       setFaded(true);
@@ -34,6 +33,7 @@ const AnimeCard = ({
     if (right + 100 >= window.innerWidth) {
       setOverflow(true);
     }
+    console.log(right, window.innerWidth);
   }, [showHoverCard]);
   return (
     <Link href={`/anime/${id}`} passHref>
