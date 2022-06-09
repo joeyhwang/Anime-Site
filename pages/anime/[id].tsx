@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from 'styles/AnimeId.module.scss';
@@ -32,6 +32,9 @@ const Anime = ({ data }: AnimeProps) => {
     const fmtNum = (num: number) => num.toString().padStart(2, '0');
     return `${fmtNum(minutes)} min`;
   };
+  const [overflow, setOverflow] = useState(false);
+  const previewRef = useRef() as React.MutableRefObject<any>;
+
   const infoColumn = (infoTitle: string, value: string | number | infoArray[] | undefined) => (
     <div className={styles.infoColumn}>
       <h3>{infoTitle}</h3>
@@ -45,6 +48,7 @@ const Anime = ({ data }: AnimeProps) => {
         : <div>{value || 'unknown'}</div>}
     </div>
   );
+
 
   return (
     <div>
@@ -73,27 +77,40 @@ const Anime = ({ data }: AnimeProps) => {
 
                 </h1>
                 <div className={styles.subHeader}>
-                  Rank:
-                  {' '}
-                  <span>{rank || 'N/A'}</span>
-                  Score:
-                  {' '}
-                  <span>{mean || 'N/A'}</span>
-                  Popularity:
-                  {' '}
-                  <span>{popularity || 'N/A'}</span>
-
-                  Members:
-                  {' '}
-                  <span>{statistics.num_list_users.toLocaleString('en-US') || 'N/A'}</span>
-
+                  <div>
+                    Rank:
+                    {' '}
+                    <span>{rank || 'N/A'}</span>
+                  </div>
+                  <div>
+                    Score:
+                    {' '}
+                    <span>{mean || 'N/A'}</span>
+                  </div>
+                  <div>
+                    Popularity:
+                    {' '}
+                    <span>{popularity || 'N/A'}</span>
+                  </div>
+                  <div>
+                    Members:
+                    {' '}
+                    <span>{statistics.num_list_users.toLocaleString('en-US') || 'N/A'}</span>
+                  </div>
                 </div>
               </div>
-
-              <div className={styles.synopsis}>
+              <p className={styles.synopsis}>
                 {synopsis}
-              </div>
+              </p>
             </div>
+          </div>
+
+          <div className={styles.descriptionContainer}>
+            <h2>Synopsis</h2>
+            
+            <p>
+              {synopsis}
+            </p>
           </div>
 
           <div className={styles.infoContainer}>

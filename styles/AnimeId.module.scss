@@ -13,12 +13,15 @@ $large: 1400px;
     .bodyHeader {
         margin-top: 2rem;
         display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
         padding: 2rem;
         background-color: #151F2E;
         border-radius: 10px;
         .imageContainer {
           min-width: 190px;
-          height: 280px;
+          min-height: 280px;
           position: relative;
           border-radius: 20px;
           transition: transform .3s;
@@ -30,14 +33,18 @@ $large: 1400px;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-
+          height: unset;
+          width: 100%;
           h1 {
           margin-top: 0rem;
           }
 
           .synopsis {
-            line-height: 1.5;
-            font-size: 1rem;
+            line-height: 1.6;
+            font-size: clamp(0.5rem, calc(0.75rem + 0.25vw), 1.2rem);
+            margin: 0;
+            overflow: auto;
+            display: none;
           }
       }
     }
@@ -50,7 +57,8 @@ $large: 1400px;
         h1 {
           margin-top: 0rem;
           display: flex;
-          align-items: center;  
+          align-items: center;
+          font-size: clamp(1.3rem, calc(1.3rem + 0.5vw), 2rem);
           a {
             font-size: 1rem;
             color: rgb(202, 199, 199);
@@ -63,12 +71,15 @@ $large: 1400px;
 
 
         .subHeader {
-            font-size: 1.2rem;
+            font-size: clamp(0.5rem, calc(0.5rem + 0.5vw), 1.2rem);
+            display: flex;
             margin-bottom: 2rem;
             span {
               margin-right: 1rem;
               font-weight: bold;
               font-size: 1.3rem;
+              font-size: clamp(0.6rem, calc(0.6rem + 0.5vw), 1.3rem);
+
             }
         }
     }
@@ -96,6 +107,15 @@ $large: 1400px;
           }
         }
     }
+}
+
+.descriptionContainer {
+  background:#151F2E;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  display: unset;
+  line-height: 1.6;
+  font-size: clamp(0.7rem, calc(0.6rem + 0.5vw), 1.2rem);
 
 }
 
@@ -121,6 +141,27 @@ $large: 1400px;
   @media (min-width: $medium) {
     .container {
       padding: 5vw 7vw;
+    }
+
+    .bodyHeader {
+      flex-direction: unset !important;
+
+    }
+
+    .headerTextContainer {
+      height: 280px !important;
+    }
+
+    .synopsis {
+      display: unset !important;
+    }
+
+    .descriptionContainer {
+      display: none;
+    }
+
+    .subHeader {
+      flex-direction: row !important;
     }
   
     .grid {

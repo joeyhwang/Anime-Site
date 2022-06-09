@@ -51,7 +51,8 @@ const Input = ({
           <>
             <AiOutlineSearch />
             <input
-              type="text"
+              role="search"
+              type="search"
               className={styles.input}
               onChange={debouncedResults}
               onKeyDown={(e) => pushSearch(e)}
