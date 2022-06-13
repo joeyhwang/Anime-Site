@@ -53,7 +53,7 @@ const AnimeInfoCard = ({
       <div className={styles.textContentContainer}>
         <div className={styles.headerContentContainer}>
           <h3>
-            { start_season ? startSeasonText : 'none'}
+          { start_season ? startSeasonText : 'none'}
             {' '}
             -
             {' '}
@@ -66,7 +66,7 @@ const AnimeInfoCard = ({
             {' '}
             {num_episodes && num_episodes === 1 ? `${num_episodes} Episode` : `${num_episodes} Episodes`}
           </p>
-          <div>{studios && renderStudiosText()}</div>
+          <div className={styles.studios}>{studios && renderStudiosText()}</div>
         </div>
 
         <p className={`${styles.synopsis}`} style={{ paddingRight: synopsisActive ? 14 : 20, overflow: synopsisActive ? 'auto' : 'hidden' }} onMouseEnter={() => setSynopsisActive(true)} onMouseLeave={() => setSynopsisActive(false)}>

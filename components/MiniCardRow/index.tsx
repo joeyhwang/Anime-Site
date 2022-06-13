@@ -21,7 +21,6 @@ const MiniCardRow = ({ animeData = [], title }: Props) => {
   const [showMore, setShowMore] = useToggle();
   const overflowRef = useRef<HTMLHeadingElement>(null);
   const isOverflow = useIsOverflow(overflowRef, true, undefined);
-
   return (
     <div className={styles.recommendationContainer}>
       {

@@ -15,7 +15,6 @@ describe('input tests', () => {
         userEvent.type(searchInput, 'one piece');
         expect(searchInput.value).not.toBe('one piece');
         await waitFor(() => expect(searchInput.value).toBe('one piece'), {timeout: 300});
-        console.log(searchInput.value);
     }) 
 
     

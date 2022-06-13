@@ -1,7 +1,6 @@
 import handler from './handler';
 
 export default handler.get(async (req, res) => {
-  console.log(typeof req.query.url);
   const reqUrl = req.query.url as string;
   if (process.env.CLIENT_ID) {
     const resp = await fetch(

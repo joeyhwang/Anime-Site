@@ -68,7 +68,7 @@ const Home: NextPage<HomeProps> = ({
             <div className={styles.titleContainer}>
               <h1>{title}</h1>
               <Link href={`/anime/category/${route}`} passHref>
-                <button type="button" className={styles.viewMoreBtn}>
+                <button type="button" aria-label="View More" className={styles.viewMoreBtn}>
                   <FiArrowRight />
                 </button>
               </Link>
@@ -84,6 +84,10 @@ const Home: NextPage<HomeProps> = ({
 
   return (
     <div className={styles.main}>
+      <Head>
+        <title>animesite</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Navbar landingPage />
       <ScrollButton />
       <LandingPage />

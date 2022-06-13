@@ -9,7 +9,7 @@ interface ViewMoreBtnProps {
 
 const ViewMoreBtn = ({viewMore, text, setViewMore} : ViewMoreBtnProps) => {
   return (
-      <button className={styles.viewMoreBtn} type="button" onClick={setViewMore}>
+      <button aria-label="View More" className={styles.viewMoreBtn} type="button" onClick={setViewMore}>
         {viewMore ? `${text} less` : `${text} more`}
       </button>
   )

@@ -1,3 +1,6 @@
+$small: 480px;
+$medium: 768px;
+$large: 1400px;
 
 .row {
     display: flex;
@@ -12,6 +15,10 @@
       justify-content: flex-end;
       align-items: flex-end;
 
+      :nth-child(3) {
+        display: none;
+      }
+
       > button {
         font-size: 1.2rem;
         border: none;
@@ -20,6 +27,16 @@
         :hover, &.active {
           color: white;
           cursor: pointer;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $medium) {
+    .row {
+      .rightContainer{ 
+        :nth-child(3) {
+          display: block;
         }
       }
     }

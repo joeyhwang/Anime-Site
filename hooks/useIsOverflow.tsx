@@ -5,6 +5,9 @@ const useIsOverflow = (ref: any, isVerticalOverflow: boolean, callback: any) => 
 
   useEffect(() => {
     const { current } = ref;
+    if (!current) {
+      return;
+    }
     const {
       clientWidth, scrollWidth, clientHeight, scrollHeight,
     } = current;
