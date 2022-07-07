@@ -5,10 +5,10 @@
     width: 100%;
     display: flex;
     align-items: center;
-    background-image: url('/anime-bg.jpg');
+    background-image: url('/anime-bg-mobile.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
+    background-position: top;
     padding: 10vw;
     .leftContainer {
         max-width: 40ch;
@@ -31,4 +31,14 @@
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         }
     }
+}
+
+
+@media(min-width: 700px) {
+    .landingPageContainer {
+        background-image: url('/anime-bg.jpg');
+        background-size: cover;
+        background-position: bottom;
+    }
+
 }

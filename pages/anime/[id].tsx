@@ -99,7 +99,7 @@ const Anime = ({ data }: AnimeProps) => {
                   </div>
                 </div>
               </div>
-              <p className={styles.synopsis}>
+              <p className={styles.synopsis} style={{ paddingRight: 20 }}>
                 {synopsis}
               </p>
             </div>
